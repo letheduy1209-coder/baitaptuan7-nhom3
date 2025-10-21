@@ -1,40 +1,33 @@
-public class SachGiaoTrinh extends Sach {
+package tuan6;
+public class SachGiaoTrinh extends Sach{
     private String monHoc;
-    private String capDo;
-
-    public SachGiaoTrinh(String maSach, String tieuDe, String tacGia, int namXuatBan, int soLuong, String monHoc, String capDo) {
+    private String CapDo;
+    public SachGiaoTrinh() {
+        super();
+    }
+    public SachGiaoTrinh(String maSach, String tieuDe, String tacGia, int namXuatBan, int soLuong, String monHoc, String CapDo) {
         super(maSach, tieuDe, tacGia, namXuatBan, soLuong);
         this.monHoc = monHoc;
-        this.capDo = capDo;
+        this.CapDo = CapDo;
     }
-
     public String getMonHoc() {
-        return monHoc;
+        return this.monHoc;
     }
-
     public void setMonHoc(String monHoc) {
         this.monHoc = monHoc;
     }
-
     public String getCapDo() {
-        return capDo;
+        return this.CapDo;
     }
-
-    public void setCapDo(String capDo) {
-        this.capDo = capDo;
+    public void setCapDo(String CapDo) {
+        this.CapDo = CapDo;
     }
 
     @Override
     public String toString() {
-        return "Sach Giao Trinh {" +
-                "Ma Sach='" + getMaSach() + '\'' +
-                ", Tieu de='" + getTieuDe() + '\'' +
-                ", Tac gia='" + getTacGia() + '\'' +
-                ", Nam xuat ban=" + getNamXuatBan() +
-                ", So luong=" + getSoLuong() +
-                ", Mon hoc='" + monHoc + '\'' +
-                ", Cap do='" + capDo + '\'' +
-                '}';
+        return "{" +
+                " monHoc='" + getMonHoc() + "'" +
+                ", CapDo='" + getCapDo() + "'" +
+                "}";
     }
 }
-

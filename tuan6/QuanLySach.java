@@ -1,55 +1,55 @@
+package tuan6;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class QuanLySach {
-    private ArrayList<Sach> danhSach;
+    private List<Sach> danhSach;
 
     public QuanLySach() {
         danhSach = new ArrayList<>();
     }
 
-    // Thêm sách
-    public void themSach(Sach s) {
-        danhSach.add(s);
-        System.out.println("Da them sach: " + s.getTieuDe());
+    public boolean themSach(Sach sach) {
+        if (sach == null) return false;
+        if (timSach(sach.getMaSach()) != null) return false;
+        return danhSach.add(sach);
     }
 
-    // Xóa sách theo mã
-    public void xoaSach(String maSach) {
-        Sach s = timKiem(maSach);
-        if (s != null) {
-            danhSach.remove(s);
-            System.out.println("Da xoa sach co ma: " + maSach);
-        } else {
-            System.out.println("Khong tim thay sach co ma: " + maSach);
-        }
+    public boolean xoaSach(String maSach) {
+        Sach s = timSach(maSach);
+        if (s == null) return false;
+        return danhSach.remove(s);
     }
 
-    // Cập nhật thông tin (VD: số lượng)
-    public void capNhatSoLuong(String maSach, int soLuongMoi) {
-        Sach s = timKiem(maSach);
-        if (s != null) {
-            s.setSoLuong(soLuongMoi);
-            System.out.println("Da cap nhat luong sach " + maSach + " thanh: " + soLuongMoi);
-        } else {
-            System.out.println("Khong tim thay sach de cap nhat!");
-        }
-    }
-
-    // Tìm kiếm sách theo mã
-    public Sach timKiem(String maSach) {
-        for (Sach s : danhSach) {
-            if (s.getMaSach().equalsIgnoreCase(maSach)) {
-                return s;
+    public boolean capNhatSach(String maSach, Sach sachCapNhat) {
+        if (maSach == null || sachCapNhat == null) return false;
+        for (int i = 0; i < danhSach.size(); i++) {
+            if (maSach.equals(danhSach.get(i).getMaSach())) {
+                sachCapNhat.setMaSach(maSach);
+                danhSach.set(i, sachCapNhat);
+                return true;
             }
+        }
+        return false;
+    }
+
+    public Sach timSach(String maSach) {
+        if (maSach == null) return null;
+        for (Sach s : danhSach) {
+            if (maSach.equals(s.getMaSach())) return s;
         }
         return null;
     }
 
-    // Hiển thị danh sách
     public void hienThiDanhSach() {
-        System.out.println("DANH SACH HIEN CO:");
-        for (Sach s : danhSach) {
-            System.out.println(s.toString());
+        if (danhSach.isEmpty()) {
+            System.out.println("Danh sach sach rong.");
+            return;
+        }
+        System.out.println("Danh sach sach:");
+        for (int i = 0; i < danhSach.size(); i++) {
+            System.out.println((i + 1) + ". " + danhSach.get(i).toString());
         }
     }
 }
