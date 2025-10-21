@@ -1,19 +1,19 @@
-package tuan7;
 
-public abstract class Sach 
-{
-    private String maSach;
-    private String tieuDe;
-    private String tacGia;
-    private int namXuatBan;
-    private int soLuong;
-    private double giaCoBan; // ✅ Thuộc tính mới
 
-    public Sach() {}
+/**
+ * Lớp trừu tượng Sach (abstract)
+ * - chứa giaCoBan và phương thức trừu tượng tinhGiaBan()
+ */
+public abstract class Sach {
+    protected String maSach;
+    protected String tieuDe;
+    protected String tacGia;
+    protected int namXuatBan;
+    protected int soLuong;
+    protected double giaCoBan;
 
-    // ✅ Constructor đầy đủ
-    public Sach(String maSach, String tieuDe, String tacGia, int namXuatBan, int soLuong, double giaCoBan) 
-    {
+    public Sach(String maSach, String tieuDe, String tacGia,
+                int namXuatBan, int soLuong, double giaCoBan) {
         this.maSach = maSach;
         this.tieuDe = tieuDe;
         this.tacGia = tacGia;
@@ -22,67 +22,22 @@ public abstract class Sach
         this.giaCoBan = giaCoBan;
     }
 
-    // ===== Getter & Setter =====
-    public String getMaSach() 
-    { 
-        return maSach; 
-    }
-    public void setMaSach(String maSach) 
-    { 
-        this.maSach = maSach; 
-    }
+    // Getter / Setter
+    public String getMaSach() { return maSach; }
+    public String getTieuDe() { return tieuDe; }
+    public String getTacGia() { return tacGia; }
+    public int getNamXuatBan() { return namXuatBan; }
+    public int getSoLuong() { return soLuong; }
+    public double getGiaCoBan() { return giaCoBan; }
 
-    public String getTieuDe() 
-    { 
-        return tieuDe; 
-    }
-    public void setTieuDe(String tieuDe) 
-    { 
-        this.tieuDe = tieuDe; 
-    }
+    public void setSoLuong(int soLuong) { this.soLuong = soLuong; }
+    public void setGiaCoBan(double giaCoBan) { this.giaCoBan = giaCoBan; }
 
-    public String getTacGia() 
-    { 
-        return tacGia; 
-    }
-    public void setTacGia(String tacGia) 
-    { 
-        this.tacGia = tacGia; 
-    }
-
-    public int getNamXuatBan() 
-    { 
-        return namXuatBan; 
-    }
-    public void setNamXuatBan(int namXuatBan) 
-    { 
-        this.namXuatBan = namXuatBan; 
-    }
-
-    public int getSoLuong() 
-    { 
-        return soLuong; 
-    }
-    public void setSoLuong(int soLuong) 
-    { 
-        this.soLuong = soLuong; 
-    }
-
-    public double getGiaCoBan() 
-    { 
-        return giaCoBan; 
-    }
-    public void setGiaCoBan(double giaCoBan) 
-    { 
-        this.giaCoBan = giaCoBan; 
-    }
-
-    //Phương thức trừu tượng
+    // Phương thức trừu tượng: các lớp con phải triển khai
     public abstract double tinhGiaBan();
 
-    //Hiển thị thông tin 
-    public void hienThiThongTin() 
-    {
+    // Hiển thị thông tin cơ bản (các lớp con có thể override để in thêm)
+    public void hienThiThongTin() {
         System.out.println("Ma sach: " + maSach);
         System.out.println("Tieu de: " + tieuDe);
         System.out.println("Tac gia: " + tacGia);
@@ -91,4 +46,8 @@ public abstract class Sach
         System.out.println("Gia co ban: " + giaCoBan + " VND");
     }
 
+    @Override
+    public String toString() {
+        return maSach + " - " + tieuDe + " - Gia ban uoc tinh: " + tinhGiaBan() + " VND";
+    }
 }

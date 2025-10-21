@@ -1,43 +1,36 @@
-package tuan7;
+
 
 public class Test {
     public static void main(String[] args) {
         QuanLySach ql = new QuanLySach();
 
-        // Tao sach giao trinh
-        SachGiaoTrinh sg1 = new SachGiaoTrinh("GT01", "CSDL", "Nguyen Van An", 2021, 10, 50000, "CNTT", "DH");
-        SachGiaoTrinh sg2 = new SachGiaoTrinh("GT02", "Giai tich 1", "Tran Thi Chau", 2020, 8, 55000, "Toan hoc", "DH");
+        // Tạo tối thiểu 1 sách giáo trình và 1 sách tiểu thuyết theo đề bài
+        SachGiaoTrinh sgk = new SachGiaoTrinh("GT01", "Toan Cao Cap", "Nguyen Van A",
+                2020, 50, 120000.0, "Ke A1");
+        SachTieuThuyet tt = new SachTieuThuyet("TT01", "Harry Potter", "J.K. Rowling",
+                2019, 30, 180000.0, true, "Ke B2");
 
-        // Tao sach tieu thuyet
-        SachTieuThuyet st1 = new SachTieuThuyet("TT01", "Doraemon", "Fujiko F. Fujio", 1995, 50, 60000, "Thieu Nhi", true);
-        SachTieuThuyet st2 = new SachTieuThuyet("TT02", "Harry Potter", "J.K. Rowling", 2003, 15, 65000, "Ky ao", true);
+        // Thêm vào quản lý
+        ql.themSach(sgk);
+        ql.themSach(tt);
 
-        // Them vao danh sach
-        ql.themSach(sg1);
-        ql.themSach(sg2);
-        ql.themSach(st1);
-        ql.themSach(st2);
+        // Hiển thị danh sách và giá bán ước tính
+        ql.hienThiDanhSachSach();
 
-        // Hien thi danh sach
-        ql.hienThiDanhSach();
+        // Thực hiện kiểm kê bằng interface IKiemKe
+        System.out.println("\n===== KIEM KE =====");
+        IKiemKe k1 = sgk; // tham chiếu bằng interface
+        IKiemKe k2 = tt;
 
-        // Tim kiem
-        System.out.println("\n--- Ket qua tim kiem (TT02) ---");
-        Sach tim = ql.timKiem("TT02");
-        if (tim != null)
-            System.out.println(tim);
-        else
-            System.out.println("Khong tim thay!");
+        System.out.println("Sach giao trinh con du ton kho (>=40)? " + k1.kiemTraTonKho(40));
+        System.out.println("Sach tieu thuyyt con du ton kho (>=40)? " + k2.kiemTraTonKho(40));
 
-        // Cap nhat so luong
-        ql.capNhatSoLuong("GT01", 20);
+        // Cập nhật vị trí
+        k1.capNhatViTri("Kho A-Ke 5");
+        k2.capNhatViTri("Kho B-Ke 1");
 
-        // Xoa sach
-        ql.xoaSach("GT02");
-
-        // Hien thi sau khi cap nhat
-        System.out.println("\n--- Danh sach sau khi xoa ---");
-        ql.hienThiDanhSach();
+        // Hiển thị lại sau cập nhật
+        System.out.println("\n===== SAU KHI CAP NHAT VI TRI =====");
+        ql.hienThiDanhSachSach();
     }
-
 }
