@@ -1,6 +1,7 @@
 package tuan7;
 
-public class Test {
+public class Test 
+{
     public static void main(String[] args) {
         QuanLySach ql = new QuanLySach();
 

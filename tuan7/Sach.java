@@ -7,11 +7,11 @@ public abstract class Sach
     private String tacGia;
     private int namXuatBan;
     private int soLuong;
-    private double giaCoBan; // ✅ Thuộc tính mới
+    private double giaCoBan; // Thuộc tính mới
 
     public Sach() {}
 
-    // ✅ Constructor đầy đủ
+    // Constructor đầy đủ
     public Sach(String maSach, String tieuDe, String tacGia, int namXuatBan, int soLuong, double giaCoBan) 
     {
         this.maSach = maSach;
